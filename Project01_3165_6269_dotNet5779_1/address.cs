@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    class Address
+    public class Address
     {
         private string StreetName;
         private int AddressNumber;
