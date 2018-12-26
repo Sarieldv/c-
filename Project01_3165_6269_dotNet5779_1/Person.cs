@@ -6,27 +6,28 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    abstract class Person
+    public abstract class Person
     {
 
-        protected int IDNumber;
-        public int _IDNumber
+        protected string IDNumber;
+        public string _IDNumber
         {
             get => IDNumber;
             set
             {
+                int input = int.Parse(value);
                 int Sum = 0;
-                int Temp = value / 10;
+                int Temp = input / 10;
                 for (int i = 0; i < 8; i++)
                 {
                     Sum += ((Temp % 10) * (2 ^ (i % 2))) / 10 + ((Temp % 10) * (2 ^ (i % 2))) % 10;
                     Temp /= 10;
                 }
                 Temp = (((Sum / 10) * 10 + 10) - Sum) % 10;
-                if (Temp == value % 10)
+                if (Temp == input % 10)
                     IDNumber = value;
                 else
-
+                    throw new NotImplementedException();
 
             }
         }

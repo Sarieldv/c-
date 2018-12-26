@@ -4,13 +4,11 @@ using System.Text;
 
 namespace BE
 {
-    class Test
+    public class Test
     {
         private static int Number;
         private int TesterId;
         private int TraineeId;
-        private DateTime Date;
-        private DateTime Hour;
         private Address Address;
         private bool DistanceKeep;
         private bool ReversParking;
@@ -22,7 +20,11 @@ namespace BE
         private bool Overtaking;
         private bool Turning;
         private string TesterNote;
-        private DateTime Time;
+        private DateTime DateAndTime;
         private bool Grade;
+        public override string ToString()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    class Tester : Person
+    public class Tester : Person
     {
         private int YearOfExperience;
         private int MaxTests;
