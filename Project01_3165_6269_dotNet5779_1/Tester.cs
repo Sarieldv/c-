@@ -13,6 +13,8 @@ namespace BE
         private VehicleParams MyVehicle;
         private WeeklyWorkHours MyWorkHours;
         private double MaximumDistance;
+        private int TestPPassed;
+        private int MaxDistanceFromTest;
         public double _MaximumDistance
         {
             get => MaximumDistance;
