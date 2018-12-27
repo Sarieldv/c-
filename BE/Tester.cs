@@ -25,9 +25,13 @@ namespace BE
             set
             {
                 if (value > 0)
+                {
                     TestsSignedUpFor++;
+                }
                 if (value < 0)
+                {
                     TestsSignedUpFor--;
+                }
             }
         }
         public Tester(string _ID, FullName _name, DateTime _birthDate, Gender _gender,PhoneNumber _phoneNumber, Address _address, int _yearsOfExperience, int _maximumWeeklyTests, VehicleParams _myVehicle, WeeklyWorkHours _myWorkHours, int _maximumDistance)

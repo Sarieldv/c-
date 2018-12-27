@@ -6,7 +6,7 @@ using DS;
 
 namespace DAL
 {
-    public class Dal_imp : IDAL
+    internal class Dal_imp : IDAL
     {
         public void AddTest(ref Tester tester, ref Trainee trainee, Address _AddressOfDeparture, DateTime _DateAndTime)
         {

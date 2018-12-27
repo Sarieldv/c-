@@ -8,13 +8,14 @@ using DAL;
 
 namespace BL
 {
-    class BL_imp : IBL
+    internal class BL_imp : IBL
     {
+        IDAL idal_instance = FactoryDAL.Instance;
         public void AddTest(ref Tester _tester, ref Trainee _trainee, Address _AddressOfDeparture, DateTime _DateAndTime)
         {
             try
             {
-                new Dal_imp().AddTest(ref _tester, ref _trainee, _AddressOfDeparture, _DateAndTime);
+                idal_instance.AddTest(ref _tester, ref _trainee, _AddressOfDeparture, _DateAndTime);
 
             }
             catch (Exception ex)
