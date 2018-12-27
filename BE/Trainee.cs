@@ -18,6 +18,7 @@ namespace BE
             get => AmountOfTests;
             set => AmountOfTests++;
         }
+        public bool HaveTest;
         private int AmountOfClasses;
         public int _amountOfClasses => AmountOfClasses;
         public Trainee(string _ID, FullName _name, DateTime _birthDate, Gender _gender, PhoneNumber _phoneNumber, Address _address, VehicleParams _traineeVehicle, string _schoolName, FullName _teacher, int _amountOfClasses)

@@ -5,7 +5,7 @@ using BE;
 
 namespace DAL
 {
-    interface IDAL
+    public interface IDAL
     {
         void AddTester(Tester NewTester );
         void EraseTester(Tester _tester);

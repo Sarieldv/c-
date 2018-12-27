@@ -16,15 +16,8 @@ namespace BE
         public VehicleParams _myVehicle => MyVehicle;
         private WeeklyWorkHours MyWorkHours;
         public WeeklyWorkHours _myWorkHours => MyWorkHours;
-        private double MaxDistanceFromTest;
-        public double _MaximumDistance
-        {
-            get => MaxDistanceFromTest;
-            set
-            {
-                MaxDistanceFromTest = ((int)(value * 10)) / 10;
-            }
-        }
+        private int MaxDistanceFromTest;
+        public int _MaxDistanceFromTest => MaxDistanceFromTest;  
         private int TestsSignedUpFor;
         public int _testsSignedUpFor
         {
@@ -37,7 +30,7 @@ namespace BE
                     TestsSignedUpFor--;
             }
         }
-        public Tester(string _ID, FullName _name, DateTime _birthDate, Gender _gender,PhoneNumber _phoneNumber, Address _address, int _yearsOfExperience, int _maximumWeeklyTests, VehicleParams _myVehicle, WeeklyWorkHours _myWorkHours, double _maximumDistance)
+        public Tester(string _ID, FullName _name, DateTime _birthDate, Gender _gender,PhoneNumber _phoneNumber, Address _address, int _yearsOfExperience, int _maximumWeeklyTests, VehicleParams _myVehicle, WeeklyWorkHours _myWorkHours, int _maximumDistance)
         {
             IDNumber = _ID;
             Name = _name;
@@ -49,7 +42,7 @@ namespace BE
             MaximumWeeklyTests = _maximumWeeklyTests;
             MyVehicle = _myVehicle;
             MyWorkHours = _myWorkHours;
-            _MaximumDistance = _maximumDistance;
+            MaxDistanceFromTest = _maximumDistance;
         }
 
         public override string ToString()

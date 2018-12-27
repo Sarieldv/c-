@@ -11,5 +11,11 @@ namespace BE
         private string StreetName;
         private int AddressNumber;
         private string CityName;
+        public Address(string _streetName, int _addressNumber, string _cityName)
+        {
+            StreetName = _streetName;
+            AddressNumber = _addressNumber;
+            CityName = _cityName;
+        }
     }
 }

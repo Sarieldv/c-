@@ -14,7 +14,7 @@ namespace DAL
             {
                 DataSource.TestsList.Add(new Test(tester._IDNumber, trainee._IDNumber, _AddressOfDeparture, _DateAndTime));
                 tester._testsSignedUpFor=1;
-                trainee._amountOfTests = 1;
+                trainee.HaveTest = true;
             }
         }
         private bool IsTestLegal(Test _test)
@@ -33,6 +33,8 @@ namespace DAL
         {
             if (!IsIdLegal(_tester._IDNumber))
                 throw new Exception("The ID number is invalid.");
+            if (!DoesIDExist(_tester._IDNumber))
+                throw new Exception("The ID number alredy exists.");
             if (!IsPhoneNumberLegal(_tester._myPhoneNumber))
                 throw new Exception("The phone number is invalid");
             if (!IsTesterAgeLegal(_tester.Age()))
@@ -111,6 +113,24 @@ namespace DAL
 
         }
         #endregion
+        private bool DoesIDExist(string _ID)
+        {
+            foreach (Tester item in DataSource.TestersList)
+            {
+                if (_ID==item._IDNumber)
+                {
+                    return false;
+                }
+            }
+            foreach  (Trainee item in DataSource.TraineesList)
+            {
+                if (_ID == item._IDNumber)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
         private bool IsTesterAgeLegal(int _age)
         {
             if (_age > new Configuration()._maximumTesterAge)
@@ -142,7 +162,7 @@ namespace DAL
         public void CancelTest(Test _test, ref Tester _tester, ref Trainee _trainee)
         {
             _tester._testsSignedUpFor = -1;
-            _trainee._amountOfTests = -1;
+            _trainee.HaveTest = false;
             DataSource.TestsList.Remove(_test);
         }
 
