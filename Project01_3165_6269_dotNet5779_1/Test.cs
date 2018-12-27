@@ -9,7 +9,7 @@ namespace BE
         private static int Number;
         private int TesterId;
         private int TraineeId;
-        private Address Address;
+        private Address AddressOfDeparture;
         private bool DistanceKeep;
         private bool ReversParking;
         private bool Parking;

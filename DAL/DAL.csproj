@@ -4,4 +4,9 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DS\DS.csproj" />
+    <ProjectReference Include="..\Project01_3165_6269_dotNet5779_1\BE.csproj" />
+  </ItemGroup>
+
 </Project>
