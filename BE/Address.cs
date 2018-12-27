@@ -8,9 +8,13 @@ namespace BE
 {
     public class Address
     {
-        private string StreetName;
-        private int AddressNumber;
-        private string CityName;
+        public string StreetName { get; set; }
+        public int AddressNumber { get; set; }
+        public string CityName { get; set; }
+        public Address()
+        {
+
+        }
         public Address(string _streetName, int _addressNumber, string _cityName)
         {
             StreetName = _streetName;

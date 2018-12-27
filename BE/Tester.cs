@@ -8,31 +8,31 @@ namespace BE
 {
     public class Tester : Person
     {
-        private int YearsOfExperience;
-        public int _yearsOfExperience => YearsOfExperience;
-        private int MaximumWeeklyTests;
-        public int _maximumWeeklyTests => MaximumWeeklyTests;
-        private VehicleParams MyVehicle;
-        public VehicleParams _myVehicle => MyVehicle;
-        private WeeklyWorkHours MyWorkHours;
-        public WeeklyWorkHours _myWorkHours => MyWorkHours;
-        private int MaxDistanceFromTest;
-        public int _MaxDistanceFromTest => MaxDistanceFromTest;  
-        private int TestsSignedUpFor;
-        public int _testsSignedUpFor
+        public int YearsOfExperience       { get; set;}
+        public int MaximumWeeklyTests      { get; set;}
+        public VehicleParams MyVehicle     { get; set;}
+        public WeeklyWorkHours MyWorkHours { get; set;}
+        public int MaxDistanceFromTest     { get; set;}
+
+        private int _testsSignedUpFor;
+        public int TestsSignedUpFor
         {
-            get => TestsSignedUpFor;
+            get => _testsSignedUpFor;
             set
             {
                 if (value > 0)
                 {
-                    TestsSignedUpFor++;
+                    _testsSignedUpFor++;
                 }
                 if (value < 0)
                 {
-                    TestsSignedUpFor--;
+                    _testsSignedUpFor--;
                 }
             }
+        }
+        public Tester()
+        {
+            
         }
         public Tester(string _ID, FullName _name, DateTime _birthDate, Gender _gender,PhoneNumber _phoneNumber, Address _address, int _yearsOfExperience, int _maximumWeeklyTests, VehicleParams _myVehicle, WeeklyWorkHours _myWorkHours, int _maximumDistance)
         {

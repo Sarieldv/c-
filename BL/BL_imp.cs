@@ -140,5 +140,10 @@ namespace BL
         {
             throw new NotImplementedException();
         }
+
+        public void UpdateTrainee(Trainee updatedTrainee)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

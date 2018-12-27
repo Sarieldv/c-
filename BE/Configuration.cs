@@ -11,7 +11,7 @@ namespace BE
         private static int maxTesterAge;
         private static int testId;
         private static int minTesterAge;
-
+        private static int minimumTraineeAge;
 
         public static int MaximumTesterAge
         {
@@ -27,26 +27,42 @@ namespace BE
 
         public static int TestId
         {
-            get { return testId; }
+            get { return testId++; }
             private set { testId = value; }
         }
+        public static int MinimumTraineeAge
+        {
+            get { return MinimumTraineeAge; }
+            private set { MinimumTraineeAge = value; }
+        }
+        private static int minimumClasses;
+
+        public static int MinimumClasses
+        {
+            get { return minimumClasses; }
+            set { minimumClasses = value; }
+        }
+
+        private static int timeBetweenTests;
+
+        public static int TimeBetweenTests
+        {
+            get { return timeBetweenTests; }
+            set { timeBetweenTests = value; }
+        }
+
 
         static Configuration()
         {
             MaximumTesterAge = 80;
             MinimumTesterAge = 40;
             TestId = 10000000;
+            MinimumTraineeAge = 18;
+            MinimumClasses = 20;
+            TimeBetweenTests = 7;
             // here we are going to change all this by loading a "configuration.xml" file
             // in those variables
         }
 
-        private static int MinimumClasses;
-        public static int _minimumClasses => MinimumClasses;
-
-
-        private static int MinimumTraineeAge;
-        public static int _minimumTraineeAge => MinimumTraineeAge;
-        private static double TimeBetweenTests;
-        public static double _timeBetweenTests => TimeBetweenTests;
       }
 }

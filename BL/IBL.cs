@@ -17,6 +17,7 @@ namespace BL
         void AddTrainee(Trainee NewTrainee);
         void EraseTrainee(Trainee _trainee);
         void UpdateTrainee(ref Trainee MyTrainee, Trainee _updatedTrainee);
+        void UpdateTrainee(Trainee updatedTrainee);
 
         void AddTest(ref Tester _tester, ref Trainee _trainee, Address _AddressOfDeparture, DateTime _DateAndTime);
         void UpdateTest(ref Test MyTest, Test _updatedTest);

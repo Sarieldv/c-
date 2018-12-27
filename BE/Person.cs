@@ -8,23 +8,18 @@ namespace BE
 {
     public abstract class Person
     {
+        public string IDNumber { get; set; }
+        public FullName Name { get; set; }
+        public DateTime BirthDate { get; set; }
+        public Gender MyGender { get; set; }
+        public PhoneNumber MyPhoneNumber { get; set; }
+        public Address MyAddress { get; set; }
 
-        protected string IDNumber;
-        public string _IDNumber => IDNumber;
-        protected FullName Name;
-        public FullName _name => Name;
-        protected DateTime BirthDate;
-        public DateTime _birthDate => BirthDate;
-        protected Gender MyGender;
-        public Gender _myGender => MyGender;
-        protected PhoneNumber MyPhoneNumber;
-        public PhoneNumber _myPhoneNumber => MyPhoneNumber;
-        protected Address MyAddress;
-        public Address _myAddress => MyAddress;
         public int Age()
         {
-            return DateTime.Now.Year - _birthDate.Year;
+            return DateTime.Now.Year - BirthDate.Year;
         }
         public abstract override string ToString();
+   
     }
 }

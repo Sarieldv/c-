@@ -13,6 +13,9 @@ namespace DAL
         void AddTrainee(Trainee NewTrainee);
         void EraseTrainee(Trainee _trainee);
         void UpdateTrainee(ref Trainee MyTrainee, Trainee _updatedTrainee);
+
+        void UpdateTester(Tester updatedTester);
+
         void AddTest(ref Tester tester, ref Trainee trainee, Address _AddressOfDeparture, DateTime _DateAndTime);
         void UpdateTest(ref Test MyTest, Test _updatedTest);
         void CancelTest(Test _test, ref Tester _tester, ref Trainee _trainee);
