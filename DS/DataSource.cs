@@ -7,8 +7,10 @@ using BE;
 
 namespace DS
 {
-    class DataSource
+    public class DataSource
     {
-        static List<Tester> TestersList;
+        public static List<Tester> TestersList =new List<Tester>();
+        public static List<Trainee> TraineesList= new List<Trainee>();
+        public static List<Test> TestsList=new List<Test>();
     }
 }
