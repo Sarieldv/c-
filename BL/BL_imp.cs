@@ -26,7 +26,19 @@ namespace BL
 
         public void AddTester(Tester NewTester)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (NewTester.Age() < 40)
+                {
+                    throw new Exception("Age under 40");
+                }
+                idal_instance.AddTester(NewTester);
+
+            }
+            catch (Exception ex)
+            {
+               throw ex;
+            }
         }
 
         public void AddTrainee(Trainee NewTrainee)

@@ -6,17 +6,47 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    public class Configuration
+    public  static class Configuration
     {
+        private static int maxTesterAge;
+        private static int testId;
+        private static int minTesterAge;
+
+
+        public static int MaximumTesterAge
+        {
+            get { return maxTesterAge; }
+            private set { maxTesterAge = value; }
+        }
+        public static int MinimumTesterAge
+        {
+            get { return minTesterAge; }
+            private set { minTesterAge = value; }
+        }
+
+
+        public static int TestId
+        {
+            get { return testId; }
+            private set { testId = value; }
+        }
+
+        static Configuration()
+        {
+            MaximumTesterAge = 80;
+            MinimumTesterAge = 40;
+            TestId = 10000000;
+            // here we are going to change all this by loading a "configuration.xml" file
+            // in those variables
+        }
+
         private static int MinimumClasses;
-        public int _minimumClasses => MinimumClasses;
-        private static int MaximumTesterAge;
-        public int _maximumTesterAge => MaximumTesterAge;
+        public static int _minimumClasses => MinimumClasses;
+
+
         private static int MinimumTraineeAge;
-        public int _minimumTraineeAge => MinimumTraineeAge;
+        public static int _minimumTraineeAge => MinimumTraineeAge;
         private static double TimeBetweenTests;
-        public double _timeBetweenTests => TimeBetweenTests;
-        private static int TestId = 10000000;
-        public int _TestID => TestId++;
-    }
+        public static double _timeBetweenTests => TimeBetweenTests;
+      }
 }

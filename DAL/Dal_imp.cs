@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using BE;
 using DS;
+using System.Linq;
 
 namespace DAL
 {
@@ -25,20 +26,26 @@ namespace DAL
 
         public void AddTester(Tester NewTester)
         {
-            if (IsTesterLegal(NewTester))
-                DataSource.TestersList.Add(NewTester);
+            if (DataSource.TestersList.Any( t => t._IDNumber == NewTester._IDNumber))
+            {
+                throw new Exception("New Tester already exists.");
+            }
+    //        if (IsTesterLegal(NewTester))
+            DataSource.TestersList.Add(NewTester);
             
         }
         private bool IsTesterLegal(Tester _tester)
         {
             if (!IsIdLegal(_tester._IDNumber))
                 throw new Exception("The ID number is invalid.");
-            if (!DoesIDExist(_tester._IDNumber))
-                throw new Exception("The ID number alredy exists.");
-            if (!IsPhoneNumberLegal(_tester._myPhoneNumber))
-                throw new Exception("The phone number is invalid");
-            if (!IsTesterAgeLegal(_tester.Age()))
-                throw new Exception(_tester._name.ToString() + "is too old to be a tester");
+
+            // to be MOVED to UI 
+            //if (!IsPhoneNumberLegal(_tester._myPhoneNumber))
+            //    throw new Exception("The phone number is invalid");
+
+            //to be MOVED to BL 
+            //if (!IsTesterAgeLegal(_tester.Age()))
+            //    throw new Exception(_tester._name.ToString() + "is too old to be a tester");
             return true;
         }
         #region personCheck
@@ -133,13 +140,13 @@ namespace DAL
         }
         private bool IsTesterAgeLegal(int _age)
         {
-            if (_age > new Configuration()._maximumTesterAge)
+            if (_age > Configuration.MaximumTesterAge)
                 return false;
             return true;
         }
         private bool IsTraineeAgeLegal(int _age)
         {
-            if (_age < new Configuration()._minimumTraineeAge)
+            if (_age < Configuration._minimumTraineeAge)
                 return false;
             return true;
         }
