@@ -6,22 +6,23 @@ namespace BE
 {
     public class Trainee : Person
     {
-        private VehicleParams TraineeVehicle;
-        public VehicleParams _traineeVehicle => TraineeVehicle;
-        private string SchoolName;
-        public string _schoolName => SchoolName;
-        private FullName Teacher;
-        public FullName _teacher => Teacher;
-        private int AmountOfTests;
-        public int _amountOfTests
+        public VehicleParams TraineeVehicle { get; set; }
+        public string SchoolName { get; set; }
+        public FullName Teacher { get; set; }
+        private int _amountOfTests;
+        public int AmountOfTests
         {
-            get => AmountOfTests;
-            set => AmountOfTests++;
+            get => _amountOfTests;
+            set => _amountOfTests++;
         }
-        public bool HaveTest;
-        private int AmountOfClasses;
-        public int _amountOfClasses => AmountOfClasses;
-        public Trainee(string _ID, FullName _name, DateTime _birthDate, Gender _gender, PhoneNumber _phoneNumber, Address _address, VehicleParams _traineeVehicle, string _schoolName, FullName _teacher, int _amountOfClasses)
+        public bool HaveTest { get; set; }
+        public bool[] PassedByVehicleParams = new bool[8];
+        public int[] AmountOfClasses = new int[8];
+        public Trainee()
+        {
+
+        }
+        public Trainee(string _ID, FullName _name, DateTime _birthDate, Gender _gender, PhoneNumber _phoneNumber, Address _address, VehicleParams _traineeVehicle, string _schoolName, FullName _teacher, int[] _amountOfClasses)
         {
             IDNumber = _ID;
             Name = _name;
@@ -34,10 +35,7 @@ namespace BE
             Teacher = _teacher;
             AmountOfClasses = _amountOfClasses;
         }
-        public override string ToString()
-        {
-            throw new NotImplementedException();
-        }
+
 
     }
 }

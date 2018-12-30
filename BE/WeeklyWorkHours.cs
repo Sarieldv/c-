@@ -9,11 +9,22 @@ namespace BE
 {
     public class WeeklyWorkHours : IEnumerable
     {
-        HoursInDay[] MyWeek = new HoursInDay[5];
-
+        public bool[,] MyWeekHours = new bool[5,6];
         public IEnumerator GetEnumerator()
         {
-            return MyWeek.GetEnumerator();
+            return MyWeekHours.GetEnumerator();
         }
+        public bool this[DateTime dateTime]
+        {
+            get
+            {
+                return MyWeekHours[(int)dateTime.DayOfWeek, (dateTime.Hour - 9)];
+            }
+            set
+            {
+                value = MyWeekHours[(int)dateTime.DayOfWeek, (dateTime.Hour - 9)];
+            }
+        }
+        public bool 
     }
 }

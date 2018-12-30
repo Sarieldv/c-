@@ -8,8 +8,15 @@ namespace BE
 {
     public class VehicleParams
     {
-        private Vehicle VehicleType;
-        private GearBox GearBoxType;
-
+        public Vehicle VehicleType;
+        public GearBox GearBoxType;
+        public int Index()
+        {
+            if((int) GearBoxType==0)
+            {
+                return (int)VehicleType;
+            }
+            return (int)VehicleType + 4;
+        }
     }
 }

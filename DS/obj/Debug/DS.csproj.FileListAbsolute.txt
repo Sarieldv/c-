@@ -1,0 +1,9 @@
+C:\Users\sariel\Desktop\sariel\מיני פרויקט\c--master\DS\bin\Debug\DS.dll
+C:\Users\sariel\Desktop\sariel\מיני פרויקט\c--master\DS\bin\Debug\DS.pdb
+C:\Users\sariel\Desktop\sariel\מיני פרויקט\c--master\DS\bin\Debug\BE.dll
+C:\Users\sariel\Desktop\sariel\מיני פרויקט\c--master\DS\bin\Debug\BE.pdb
+C:\Users\sariel\Desktop\sariel\מיני פרויקט\c--master\DS\obj\Debug\DS.csprojAssemblyReference.cache
+C:\Users\sariel\Desktop\sariel\מיני פרויקט\c--master\DS\obj\Debug\DS.csproj.CoreCompileInputs.cache
+C:\Users\sariel\Desktop\sariel\מיני פרויקט\c--master\DS\obj\Debug\DS.csproj.CopyComplete
+C:\Users\sariel\Desktop\sariel\מיני פרויקט\c--master\DS\obj\Debug\DS.dll
+C:\Users\sariel\Desktop\sariel\מיני פרויקט\c--master\DS\obj\Debug\DS.pdb

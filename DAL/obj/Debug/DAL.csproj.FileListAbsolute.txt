@@ -1,0 +1,11 @@
+C:\Users\sariel\Desktop\sariel\מיני פרויקט\c--master\DAL\obj\Debug\DAL.csprojAssemblyReference.cache
+C:\Users\sariel\Desktop\sariel\מיני פרויקט\c--master\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\Users\sariel\Desktop\sariel\מיני פרויקט\c--master\DAL\bin\Debug\DAL.dll
+C:\Users\sariel\Desktop\sariel\מיני פרויקט\c--master\DAL\bin\Debug\DAL.pdb
+C:\Users\sariel\Desktop\sariel\מיני פרויקט\c--master\DAL\bin\Debug\BE.dll
+C:\Users\sariel\Desktop\sariel\מיני פרויקט\c--master\DAL\bin\Debug\DS.dll
+C:\Users\sariel\Desktop\sariel\מיני פרויקט\c--master\DAL\bin\Debug\BE.pdb
+C:\Users\sariel\Desktop\sariel\מיני פרויקט\c--master\DAL\bin\Debug\DS.pdb
+C:\Users\sariel\Desktop\sariel\מיני פרויקט\c--master\DAL\obj\Debug\DAL.csproj.CopyComplete
+C:\Users\sariel\Desktop\sariel\מיני פרויקט\c--master\DAL\obj\Debug\DAL.dll
+C:\Users\sariel\Desktop\sariel\מיני פרויקט\c--master\DAL\obj\Debug\DAL.pdb

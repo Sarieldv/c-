@@ -12,32 +12,41 @@ namespace BL
     {
         void AddTester(Tester NewTester);
         void EraseTester(Tester _tester);
-        void UpdateTester(ref Tester MyTester, Tester _updatedTester);
+        void UpdateTester(Tester updatedTester);
+        void AddAnotherWeek(Tester tester);
+        void RemoveFirstWeek(Tester tester);
 
         void AddTrainee(Trainee NewTrainee);
         void EraseTrainee(Trainee _trainee);
-        void UpdateTrainee(ref Trainee MyTrainee, Trainee _updatedTrainee);
         void UpdateTrainee(Trainee updatedTrainee);
+        void GetTest(Trainee trainee, DateTime dateTime);
 
-        void AddTest(ref Tester _tester, ref Trainee _trainee, Address _AddressOfDeparture, DateTime _DateAndTime);
-        void UpdateTest(ref Test MyTest, Test _updatedTest);
+
+        void AddTest(Test NewTest);
         void CancelTest(Test _test);
+        void UpdateTest(Test updatedTest);
 
         List<Tester> ReturnTesters();
         List<Trainee> ReturnTrainees();
         List<Test> ReturnTests();
 
-        List<Tester> TestersByDistance(int _distance, Address address, List<Tester> _testersList);
+        List<Tester> TestersByDistance(int _distance, Address address);
         List<Tester> TestersByTime(DateTime _dateTime);
-        List<Tester>TestsByCondition (Delegate _condition);
+        List<Tester> TestersByCity(Address address);
+        List<Tester> TestersBySpecialty(VehicleParams vehicle);
+        List<Test>TestsByCondition (Func<Test, bool> _condition);
 
         int TestsDone(Trainee _trainee);
-        bool CanDrive(Trainee _trainee);
+        bool CanDrive(Trainee _trainee, VehicleParams vehicle);
 
-        List<Test> TestsByTime(DateTime _dateTime, bool _dayOrMonth);
-        List<Tester> TestersGroupedBySpecialty(bool _extraSorted);
-        List<Trainee> TraineesGroupedBySchool(bool _extraSorted);
-        List<Trainee> TraineesGroupedByTeacher(bool _extraSorted);
-        List<Trainee> TraineesGroupedByTestAmount(bool _extraSorted);
+        List<Test> TestsByDay(DateTime _dateTime);
+        List<Test> TestsByMonth(DateTime _dateTime);
+       
+        int CalcDistance(Address address1, Address address2);
+
+        List<List<List<Tester>>> TestersGroupedBySpecialty(bool _extraSorted);
+        List<List<Trainee>> TraineesGroupedBySchool(bool _extraSorted);
+        List<List<Trainee>> TraineesGroupedByTeacher(bool _extraSorted);
+        List<List<Trainee>> TraineesGroupedByTestAmount(bool _extraSorted);
     }
 }

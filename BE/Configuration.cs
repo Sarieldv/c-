@@ -43,9 +43,9 @@ namespace BE
             set { minimumClasses = value; }
         }
 
-        private static int timeBetweenTests;
+        private static TimeSpan timeBetweenTests;
 
-        public static int TimeBetweenTests
+        public static TimeSpan TimeBetweenTests
         {
             get { return timeBetweenTests; }
             set { timeBetweenTests = value; }
@@ -59,7 +59,7 @@ namespace BE
             TestId = 10000000;
             MinimumTraineeAge = 18;
             MinimumClasses = 20;
-            TimeBetweenTests = 7;
+            TimeBetweenTests=new TimeSpan(7,0,0,0);
             // here we are going to change all this by loading a "configuration.xml" file
             // in those variables
         }

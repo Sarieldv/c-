@@ -6,36 +6,40 @@ namespace BE
 {
     public class Test
     {
-        private static int Number;
-        private string TesterId;
-        private string TraineeId;
-        private Address AddressOfDeparture;
-        private bool? DistanceKeep;
-        private bool? ReverseParking;
-        private bool? Parking;
-        private bool? LookingAtMirrors;
-        private bool? Junction;
-        private bool? Reversing;
-        private bool? Roundabout;
-        private bool? Overtaking;
-        private bool? Turning;
-        private string TesterNote;
-        private DateTime DateAndTime;
-        private bool? Grade;
-        public Test(string _testerId, string _traineeId, Address _addressOfDeparture, DateTime _dateAndTime)
+        public int Number { get; set; }
+        public VehicleParams TestVehicle { get; set; }
+        public string TesterId { get; set; }
+        public string TraineeId { get; set; }
+        public Address AddressOfDeparture { get; set; }
+        public bool? DistanceKeep { get; set; }
+        public bool? ReverseParking { get; set; }
+        public bool? Parking { get; set; }
+        public bool? LookingAtMirrors { get; set; }
+        public bool? Junction { get; set; }
+        public bool? Reversing { get; set; }
+        public bool? Roundabout { get; set; }
+        public bool? Overtaking { get; set; }
+        public bool? Turning { get; set; }
+        public string TesterNote { get; set; }
+        public DateTime DateAndTime { get; set; }
+        public bool? Grade { get; set; }
+        public Test(string _testerId, VehicleParams vehicle, string _traineeId, Address _addressOfDeparture, DateTime _dateAndTime)
         {
+            Number = Configuration.TestId;
+            TestVehicle = vehicle;
             TesterId = _testerId;
             TraineeId = _traineeId;
             AddressOfDeparture = _addressOfDeparture;
             DateAndTime = _dateAndTime;
 
         }
-        public Test(string _testerId, string _traineeId, Address _addressOfDeparture, DateTime _dateAndTime, bool? _distanceKeep, bool? _reverseParking,bool? _parking, bool? _lookingAtMirrors, bool? _junction,bool? _reversing,bool? _roundabout, bool? _overtaking,bool? _turning, string _testerNote, bool? _grade)
+        public Test(Test t, bool? _distanceKeep, bool? _reverseParking, bool? _parking, bool? _lookingAtMirrors, bool? _junction, bool? _reversing, bool? _roundabout, bool? _overtaking, bool? _turning, string _testerNote, bool? _grade)
         {
-            TesterId = _testerId;
-            TraineeId = _traineeId;
-            AddressOfDeparture = _addressOfDeparture;
-            DateAndTime = _dateAndTime;
+            Number = t.Number;
+            TesterId = t.TesterId;
+            TraineeId = t.TraineeId;
+            AddressOfDeparture = t.AddressOfDeparture;
+            DateAndTime = t.DateAndTime;
             DistanceKeep = _distanceKeep;
             ReverseParking = _reverseParking;
             Parking = _parking;
@@ -48,6 +52,11 @@ namespace BE
             TesterNote = _testerNote;
             Grade = _grade;
         }
+        public Test()
+        {
+
+        }
+
         public override string ToString()
         {
             throw new NotImplementedException();

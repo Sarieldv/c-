@@ -9,12 +9,57 @@ namespace DAL
 {
     internal class Dal_imp : IDAL
     {
-        public void AddTest(ref Tester tester, ref Trainee trainee, Address _AddressOfDeparture, DateTime _DateAndTime)
+        public void AddAnotherWeek(Tester tester)
+        {
+            if (!ReturnTesters().Any(t => t.IDNumber == tester.IDNumber))
+            {
+                throw new Exception("Tester does not exist");
+            }
+            WeeklyWorkHours[] temp = tester.MyWorkHours;
+            tester.MyWorkHours = new WeeklyWorkHours[temp.Length + 1];
+            for (int i = 0; i < temp.Length; i++)
+            {
+                tester.MyWorkHours[i] = temp[i];
+            }
+            tester.MyWorkHours[temp.Length + 1] = new WeeklyWorkHours();
+            UpdateTester(tester);
+        }
+        public void RemoveFirstWeek(Tester tester)
+        {
+            if (!ReturnTesters().Any(t => t.IDNumber == tester.IDNumber))
+            {
+                throw new Exception("Tester does not exist");
+            }
+            WeeklyWorkHours[] temp = tester.MyWorkHours;
+            tester.MyWorkHours = new WeeklyWorkHours[temp.Length - 1];
+            for (int i = 1; i < temp.Length - 1; i++)
+            {
+                tester.MyWorkHours[i-1] = temp[i];
+            }
+            if(tester.MyWorkHours.Length == 0)
+            {
+                tester.MyWorkHours[1] = new WeeklyWorkHours();
+            }
+            UpdateTester(tester);
+        }
+        #region add
+        public void AddTest(Test NewTest)
         {
 
-            DataSource.TestsList.Add(new Test(tester.IDNumber, trainee.IDNumber, _AddressOfDeparture, _DateAndTime));
-            tester.TestsSignedUpFor = 1;
-            trainee.HaveTest = true;
+            if (DataSource.TestsList.Any(t=>t.Number==NewTest.Number))
+            {
+                throw new Exception("New Test already exists.");
+            }
+            if(!DataSource.TraineesList.Any(t=>t.IDNumber==NewTest.TraineeId))
+            {
+                throw new Exception("Trainee does not exist.");
+            }
+            if(!DataSource.TestersList.Any(t=>t.IDNumber==NewTest.TesterId))
+            {
+                throw new Exception("Tester does not exist.");
+            }
+            DataSource.TestsList.Add(NewTest);
+
 
         }
 
@@ -24,8 +69,6 @@ namespace DAL
             {
                 throw new Exception("New Tester already exists.");
             }
-
-
             DataSource.TestersList.Add(NewTester);
 
         }
@@ -35,11 +78,7 @@ namespace DAL
         //if (!IsPhoneNumberLegal(_tester._myPhoneNumber))
         //    throw new Exception("The phone number is invalid");
 
-        //to be MOVED to BL 
-        //if (!IsTesterAgeLegal(_tester.Age()))
-        //    throw new Exception(_tester._name.ToString() + "is too old to be a tester");
-
-        //#region personCheck
+        //to be MOVED to UI
         //private bool IsStringLetters(string str)
         //{
         //    for (int i = 0; i < str.Length; i++)
@@ -70,8 +109,6 @@ namespace DAL
         //        return true;
         //    return false;
         //}
-        //private bool IsIdLegal(string _ID)
-        //{
         //    if (_ID.Length != 8)
         //    {
         //        return false;
@@ -80,19 +117,9 @@ namespace DAL
         //    {
         //        return false;
         //    }
-        //        int input = int.Parse(_ID);
-        //        int Sum = 0;
-        //        int Temp = input / 10;
-        //        for (int i = 0; i < 8; i++)
-        //        {
-        //            Sum += ((Temp % 10) * (2 ^ (i % 2))) / 10 + ((Temp % 10) * (2 ^ (i % 2))) % 10;
-        //            Temp /= 10;
-        //        }
-        //        Temp = (((Sum / 10) * 10 + 10) - Sum) % 10;
-        //        if (Temp != input % 10)
-        //            return false;
-        //        return true;
-        //}
+
+       
+
         //private bool IsPhoneNumberLegal(PhoneNumber _pn)
         //{
         //    if (!IsStringNumbers(_pn.number))
@@ -110,7 +137,6 @@ namespace DAL
         //    return true;
 
         //}
-        //#endregion
 
         //private bool IsTesterAgeLegal(int _age)
         //{
@@ -138,23 +164,37 @@ namespace DAL
             }
             DataSource.TraineesList.Add(NewTrainee);
         }
-
-        public void CancelTest(Test _test, ref Tester _tester, ref Trainee _trainee)
+        #endregion
+        #region erase
+        public void CancelTest(Test _test)
         {
-            _tester.TestsSignedUpFor = -1;
-            _trainee.HaveTest = false;
+            if (!DataSource.TestsList.Any(t => _test.Number == t.Number))
+            {
+                throw new Exception("Test does not exist");
+            }
             DataSource.TestsList.Remove(_test);
         }
 
-        public void EraseTester(Tester _tester)
+        public void EraseTester(Tester tester)
         {
-            DataSource.TestersList.Remove(_tester);
+            if (!DataSource.TestersList.Any(t => tester.IDNumber == t.IDNumber))
+            {
+                throw new Exception("Tester does not exist.");
+            }
+            DataSource.TestersList.Remove(tester);
         }
         public void EraseTrainee(Trainee trainee)
         {
+            if (!DataSource.TraineesList.Any(t => trainee.IDNumber == t.IDNumber))
+            {
+                throw new Exception("Trainee does not exist.");
+            }
             DataSource.TraineesList.Remove(trainee);
         }
 
+    
+        #endregion
+        #region returnFromDataSource
         public List<Tester> ReturnTesters()
         {
             return DataSource.TestersList;
@@ -169,45 +209,58 @@ namespace DAL
         {
             return DataSource.TraineesList;
         }
+        #endregion
+        #region update
+        public void UpdateTest(Test updatedTest)
 
-        public void UpdateTest(ref Test MyTest, Test _updatedTest)
         {
-            //        if(IsTestLegal(_updatedTest))
-            MyTest = _updatedTest;
-        }
-
-        public void UpdateTester(ref Tester MyTester, Tester _updatedTester)
-        {
-            string val = MyTester.IDNumber;
-            if (DataSource.TestersList.Any(t => t.IDNumber == val) || DataSource.TraineesList.Any(t => t.IDNumber == _updatedTester.IDNumber))
+            if (!DataSource.TraineesList.Any(t => t.IDNumber == updatedTest.TraineeId))
             {
-                throw new Exception("New Tester already exists.");
+                throw new Exception("Trainee does not exist.");
             }
-
-            MyTester = _updatedTester;
-        }
-
-        public void UpdateTrainee(ref Trainee MyTrainee, Trainee _updatedTrainee)
-        {
-            string idNumber = MyTrainee.IDNumber;
-            if (DataSource.TraineesList.Any(t => t.IDNumber == idNumber) || DataSource.TestersList.Any(t => t.IDNumber == idNumber))
+            if (!DataSource.TestersList.Any(t => t.IDNumber == updatedTest.TesterId))
             {
-                throw new Exception("New Tester already exists.");
+                throw new Exception("Tester does not exist.");
             }
-            MyTrainee = _updatedTrainee;
+            var k = (from t in DataSource.TestsList
+                     where updatedTest.Number == t.Number
+                     select t).FirstOrDefault();
+            if(k==null)
+            {
+                throw new Exception("Test does not exist.");
+            }
+            CancelTest(k);
+            k = updatedTest.DeepClone();
+            AddTest(k);
         }
 
         public void UpdateTester(Tester updatedTester)
         {
-            Tester poorguy = DataSource.TestersList.Find(t => t.IDNumber == updatedTester.IDNumber);
-            //var k = (from t in DataSource.TestersList
-            //        where t.IDNumber == updatedTester.IDNumber
-            //        select t).FirstOrDefault();
-            if (poorguy == null)
+            var k = (from t in DataSource.TestersList
+                     where t.IDNumber == updatedTester.IDNumber
+                     select t).FirstOrDefault();
+            if (k == null)
             {
-                throw new Exception("lo kayam");
+                throw new Exception("Tester does not exist.");
             }
-            poorguy = updatedTester.DeepClone();
+            EraseTester(k);
+            k = updatedTester.DeepClone();
+            AddTester(k);
         }
+
+        public void UpdateTrainee(Trainee updatedTrainee)
+        {
+            var k = (from t in DataSource.TraineesList
+                     where t.IDNumber == updatedTrainee.IDNumber
+                     select t).FirstOrDefault();
+            if (k == null)
+            {
+                throw new Exception("Trainee does not exist.");
+            }
+            EraseTrainee(k);
+            k = updatedTrainee.DeepClone();
+            AddTrainee(k);
+        }
+        #endregion
     }
 }

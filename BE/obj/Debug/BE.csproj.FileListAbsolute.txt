@@ -1,0 +1,5 @@
+C:\Users\sariel\Desktop\sariel\מיני פרויקט\c--master\BE\bin\Debug\BE.dll
+C:\Users\sariel\Desktop\sariel\מיני פרויקט\c--master\BE\bin\Debug\BE.pdb
+C:\Users\sariel\Desktop\sariel\מיני פרויקט\c--master\BE\obj\Debug\BE.csproj.CoreCompileInputs.cache
+C:\Users\sariel\Desktop\sariel\מיני פרויקט\c--master\BE\obj\Debug\BE.dll
+C:\Users\sariel\Desktop\sariel\מיני פרויקט\c--master\BE\obj\Debug\BE.pdb

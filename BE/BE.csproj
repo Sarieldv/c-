@@ -44,7 +44,6 @@
     <Compile Include="Configuration.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="FullName.cs" />
-    <Compile Include="HoursInDay.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="PhoneNumber.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

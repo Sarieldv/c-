@@ -19,7 +19,10 @@ namespace BE
         {
             return DateTime.Now.Year - BirthDate.Year;
         }
-        public abstract override string ToString();
+        public override string ToString()
+        {
+            return "Name: " + Name.ToString() + " ID: " + IDNumber;
+        }
    
     }
 }
