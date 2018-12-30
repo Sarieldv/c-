@@ -19,7 +19,7 @@ namespace UI
         {
             string testerId;
             string traineeId;
-            VehicleParams vehicle;
+            VehicleParams vehicle = new VehicleParams();
             char a;
             Console.WriteLine("Please enter tester ID:");
             do
@@ -65,13 +65,44 @@ namespace UI
                         }
                     default:
                         {
-
-
+                            Console.WriteLine("The input is not valid. Please try again.");
                             break;
                         }
                 }
-            } while ((int)a != 48 && (int));
-            
+            } while ((int)a != 48 && (int)a != 49);
+            do
+            {
+                Console.WriteLine("For a test on a two wheel vehicle press 0. For a test on a private vehicle press 1. For a test on a medium truck press 2. For a test on a heavy truck press 3.");
+                a = Console.ReadLine()[0];
+                switch (a)
+                {
+                    case '0':
+                        {
+                            vehicle.VehicleType = Vehicle.TwoWheelVehicle;
+                            break;
+                        }
+                    case '1':
+                        {
+                            vehicle.VehicleType = Vehicle.PrivateVehicle;
+                            break;
+                        }
+                    case '2':
+                        {
+                            vehicle.VehicleType = Vehicle.MediumTruck;
+                            break;
+                        }
+                    case '3':
+                        {
+                            vehicle.VehicleType = Vehicle.HeavyTruck;
+                            break;
+                        }
+                    default:
+                        {
+                            Console.WriteLine("The input is not valid. Please try again.");
+                            break;
+                        }
+                }
+            } while ((int)a < 48 || (int)a > 51);
 
         }
 
@@ -212,27 +243,47 @@ namespace UI
             return FactoryBL.Instance.ReturnTrainees();
         }
 
-        public List<Tester> TestersBusyByTime(DateTime _dateTime)
+        public void TestersBusyByTime(DateTime _dateTime)
+        {
+            if(FactoryBL.Instance.TestersBusyByTime(_dateTime) == null)
+            {
+                Console.WriteLine("There are no testers busy at this time.");
+            }
+            else
+            {
+                foreach (var item in FactoryBL.Instance.TestersBusyByTime(_dateTime))
+                {
+                    Console.WriteLine(item.ToString() + "\n");
+                }
+            }
+        }
+
+        public void TestersByCity(Address address)
         {
             throw new NotImplementedException();
         }
 
-        public List<Tester> TestersByCity(Address address)
+        public void TestersByDistance(int _distance, Address address)
+        {
+            if (FactoryBL.Instance.TestersByDistance(_distance, address) == null)
+            {
+                Console.WriteLine("There are no testers in this distance from this address.");
+            }
+            else
+            {
+                foreach (var item in FactoryBL.Instance.TestersByDistance(_distance, address))
+                {
+                    Console.WriteLine(item.ToString() + "\n");
+                }
+            }
+        }
+
+        public void TestersBySpecialty(VehicleParams vehicle)
         {
             throw new NotImplementedException();
         }
 
-        public List<Tester> TestersByDistance(int _distance, Address address)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Tester> TestersBySpecialty(VehicleParams vehicle)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Tester> TestersFreeByTime(DateTime dateTime)
+        public void TestersFreeByTime(DateTime dateTime)
         {
             throw new NotImplementedException();
         }

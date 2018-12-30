@@ -29,11 +29,11 @@ namespace UI
         List<Trainee> ReturnTrainees();
         List<Test> ReturnTests();
 
-        List<Tester> TestersByDistance(int _distance, Address address);
-        List<Tester> TestersBusyByTime(DateTime _dateTime);
-        List<Tester> TestersFreeByTime(DateTime dateTime);
-        List<Tester> TestersByCity(Address address);
-        List<Tester> TestersBySpecialty(VehicleParams vehicle);
+        void TestersByDistance(int _distance, Address address);
+        void TestersBusyByTime(DateTime _dateTime);
+        void TestersFreeByTime(DateTime dateTime);
+        void TestersByCity(Address address);
+        void TestersBySpecialty(VehicleParams vehicle);
         List<Test> TestsByCondition(Func<Test, bool> _condition);
 
         int TestsDone(Trainee _trainee);
