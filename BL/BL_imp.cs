@@ -221,32 +221,54 @@ namespace BL
             {
                 throw new Exception("Trainee already has a test.");
             }
-            List<Tester> intersection = (List<Tester>)TestersBySpecialty(trainee.TraineeVehicle).Intersect(TestersByTime(dateTime));
-            int distance = 1;
-            while (!trainee.HaveTest)
+            List<Tester> intersection = (List<Tester>)TestersBySpecialty(trainee.TraineeVehicle).Intersect(TestersFreeByTime(dateTime));
+            var k = (from t in intersection
+                     where t.MaxDistanceFromTest >= CalcDistance(t.MyAddress, trainee.MyAddress)
+                     select t).OrderByDescending(t=>CalcDistance(t.MyAddress, trainee.MyAddress));
+            if(k.DefaultIfEmpty() == k)
             {
-                if (intersection.Intersect(TestersByDistance(distance, trainee.MyAddress)) != null)
-                {
-                    Tester tester = intersection.Intersect(TestersByDistance(distance, trainee.MyAddress)).OrderByDescending(t => t.YearsOfExperience).First();
-                    AddTest(new Test(tester.IDNumber, trainee.TraineeVehicle, trainee.IDNumber, trainee.MyAddress, dateTime));
-                }
-                distance++;
+                throw new Exception("There are no testers that can test at that time with that kind of test.");
             }
+            Tester tester = (from t in k
+                             where CalcDistance(t.MyAddress, trainee.MyAddress) == CalcDistance(k.Last().MyAddress, trainee.MyAddress)
+                             select t).OrderByDescending(t => t.YearsOfExperience).First(); 
+            AddTest(new Test(tester.IDNumber, trainee.TraineeVehicle, trainee.IDNumber, trainee.MyAddress, dateTime));
         }
 
         public List<Tester> ReturnTesters()
         {
-            return FactoryDAL.Instance.ReturnTesters();
+            try
+            {
+                return FactoryDAL.Instance.ReturnTesters();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public List<Test> ReturnTests()
         {
-            return FactoryDAL.Instance.ReturnTests();
+            try
+            {
+                return FactoryDAL.Instance.ReturnTests();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public List<Trainee> ReturnTrainees()
         {
-            return FactoryDAL.Instance.ReturnTrainees();
+            try
+            {
+                return FactoryDAL.Instance.ReturnTrainees();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public List<Tester> TestersByDistance(int _distance, Address address)
@@ -257,7 +279,7 @@ namespace BL
             return k as List<Tester>;
         }
 
-        public List<Tester> TestersByTime(DateTime _dateTime)
+        public List<Tester> TestersBusyByTime(DateTime _dateTime)
         {
             var k = (from t in ReturnTesters()
                      where t.hasTestByDate(_dateTime)
@@ -287,7 +309,7 @@ namespace BL
                      group t by t.MyVehicles.Count);
             var g = (from t in k
                      group t by t.OrderByDescending(a => a.MyVehicles));
-            if(_extraSorted)
+            if (_extraSorted)
             {
                 foreach (var item in g)
                 {
@@ -462,11 +484,21 @@ namespace BL
                 trainee.AmountOfTests = 1;
                 trainee.PassedByVehicleParams[trainee.TraineeVehicle.Index()] = (bool)updatedTest.Grade;
                 trainee.HaveTest = false;
+               (tester.MyWorkHours[(int)((originalTest.DateAndTime.DayOfYear - DateTime.Now.DayOfYear) / 7)])[originalTest.DateAndTime] = false;
+
                 try
                 {
                     UpdateTrainee(trainee);
                 }
                 catch (Exception ex)
+                {
+                    throw ex;
+                }
+                try
+                {
+                    UpdateTester(tester);
+                }
+                catch(Exception ex)
                 {
                     throw ex;
                 }
@@ -607,6 +639,14 @@ namespace BL
                 throw ex;
             }
 
+        }
+
+        public List<Tester> TestersFreeByTime(DateTime dateTime)
+        {
+            var k = (from t in ReturnTesters()
+                     where !t.hasTestByDate(dateTime)
+                     select t);
+            return k as List<Tester>;
         }
     }
 }

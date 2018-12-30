@@ -197,16 +197,28 @@ namespace DAL
         #region returnFromDataSource
         public List<Tester> ReturnTesters()
         {
+            if(DataSource.TestersList.FirstOrDefault()==null)
+            {
+                throw new Exception("There are no testers in the system.");
+            }
             return DataSource.TestersList;
         }
 
         public List<Test> ReturnTests()
         {
+            if (DataSource.TestsList.FirstOrDefault() == null)
+            {
+                throw new Exception("There are no tests in the system.");
+            }
             return DataSource.TestsList;
         }
 
         public List<Trainee> ReturnTrainees()
         {
+            if (DataSource.TraineesList.FirstOrDefault() == null)
+            {
+                throw new Exception("There are no trainees in the system.");
+            }
             return DataSource.TraineesList;
         }
         #endregion

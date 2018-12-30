@@ -8,16 +8,16 @@ namespace BL
 {
     public class FactoryBL
     {
-        private static IBL MyBL = null;
-        public IBL GetBL
+        private static IBL instance = null;
+        public static IBL Instance
         {
             get
             {
-                if (MyBL == null)
+                if (instance == null)
                 {
-                    MyBL = new BL_imp();
+                    instance = new BL_imp();
                 }
-                return MyBL;
+                return instance;
             }
         }
     }

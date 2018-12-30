@@ -31,7 +31,8 @@ namespace BL
         List<Test> ReturnTests();
 
         List<Tester> TestersByDistance(int _distance, Address address);
-        List<Tester> TestersByTime(DateTime _dateTime);
+        List<Tester> TestersBusyByTime(DateTime _dateTime);
+        List<Tester> TestersFreeByTime(DateTime dateTime);
         List<Tester> TestersByCity(Address address);
         List<Tester> TestersBySpecialty(VehicleParams vehicle);
         List<Test>TestsByCondition (Func<Test, bool> _condition);
