@@ -9,19 +9,19 @@ namespace UI
 {
     interface IUI
     {
-        void AddTester(Tester NewTester);
+        void AddTester();
         void EraseTester(Tester _tester);
         void UpdateTester(Tester updatedTester);
         void AddAnotherWeek(Tester tester);
         void RemoveFirstWeek(Tester tester);
 
-        void AddTrainee(Trainee NewTrainee);
+        void AddTrainee();
         void EraseTrainee(Trainee _trainee);
         void UpdateTrainee(Trainee updatedTrainee);
         void GetTest(Trainee trainee, DateTime dateTime);
 
 
-        void AddTest(Test NewTest);
+        void AddTest();
         void CancelTest(Test _test);
         void UpdateTest(Test updatedTest);
 

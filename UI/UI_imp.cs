@@ -15,17 +15,72 @@ namespace UI
             FactoryBL.Instance.AddAnotherWeek(tester);
         }
 
-        public void AddTest(Test NewTest)
+        public void AddTest()
+        {
+            string testerId;
+            string traineeId;
+            VehicleParams vehicle;
+            char a;
+            Console.WriteLine("Please enter tester ID:");
+            do
+            {
+                testerId = Console.ReadLine();
+                if (testerId.Length != 9)
+                {
+                    Console.WriteLine("The tester ID number is the wrong length. Please reenter the ID:");
+                }
+                if (!IsStringNumbers(testerId))
+                {
+                    Console.WriteLine("The tester ID number entered contains characters that are not numbers. Please reenter the ID:");
+                }
+            } while (testerId.Length != 9 || !IsStringNumbers(testerId));
+            Console.WriteLine("Please enter trainee ID:");
+            do
+            {
+                traineeId = Console.ReadLine();
+                if (traineeId.Length != 9)
+                {
+                    Console.WriteLine("The trainee ID number is the wrong length. Please reenter the ID:");
+                }
+                if (!IsStringNumbers(traineeId))
+                {
+                    Console.WriteLine("The trainee ID number entered contains characters that are not numbers. Please reenter the ID:");
+                }
+            } while (traineeId.Length != 9 || !IsStringNumbers(traineeId));
+            do
+            {
+                Console.WriteLine("For a test on an automatic gearbox, press 0. For a test on a manual gearbox, press 1.");
+                a = Console.ReadLine()[0];
+                switch (a)
+                {
+                    case '0':
+                        {
+                            vehicle.GearBoxType = GearBox.Automatic;
+                            break;
+                        }
+                    case '1':
+                        {
+                            vehicle.GearBoxType = GearBox.Manual;
+                            break;
+                        }
+                    default:
+                        {
+
+
+                            break;
+                        }
+                }
+            } while ((int)a != 48 && (int));
+            
+
+        }
+
+        public void AddTester()
         {
             throw new NotImplementedException();
         }
 
-        public void AddTester(Tester NewTester)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void AddTrainee(Trainee NewTrainee)
+        public void AddTrainee()
         {
             throw new NotImplementedException();
         }
@@ -49,7 +104,10 @@ namespace UI
         {
             FullName correction = name;
             correction.FirstName.ToLower();
-            correction.FirstName[0] +=
+            correction.FirstName[0].ToString().ToUpper();
+            correction.LastName.ToLower();
+            correction.LastName[0].ToString().ToUpper();
+            return correction;
         }
 
         public void EraseTester(Tester _tester)
