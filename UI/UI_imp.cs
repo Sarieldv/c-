@@ -17,23 +17,11 @@ namespace UI
 
         public void AddTest()
         {
-            string testerId;
             string traineeId;
-            VehicleParams vehicle = new VehicleParams();
+            Trainee trainee;
+            DateTime myDate = new DateTime();
+            //VehicleParams vehicle = new VehicleParams();
             char a;
-            Console.WriteLine("Please enter tester ID:");
-            do
-            {
-                testerId = Console.ReadLine();
-                if (testerId.Length != 9)
-                {
-                    Console.WriteLine("The tester ID number is the wrong length. Please reenter the ID:");
-                }
-                if (!IsStringNumbers(testerId))
-                {
-                    Console.WriteLine("The tester ID number entered contains characters that are not numbers. Please reenter the ID:");
-                }
-            } while (testerId.Length != 9 || !IsStringNumbers(testerId));
             Console.WriteLine("Please enter trainee ID:");
             do
             {
@@ -46,64 +34,107 @@ namespace UI
                 {
                     Console.WriteLine("The trainee ID number entered contains characters that are not numbers. Please reenter the ID:");
                 }
-            } while (traineeId.Length != 9 || !IsStringNumbers(traineeId));
+                if((from t in ReturnTrainees() where t.IDNumber == traineeId select t).FirstOrDefault() == null && IsStringLetters(traineeId) && traineeId.Length == 9)
+                {
+                    Console.WriteLine("A trainee with this ID does not exist");
+                }
+            } while (traineeId.Length != 9 || !IsStringNumbers(traineeId) || (from t in ReturnTrainees() where t.IDNumber == traineeId select t).FirstOrDefault() == null );
+            trainee = (from t in ReturnTrainees() where t.IDNumber == traineeId select t).FirstOrDefault();
+            //do
+            //{
+            //    Console.WriteLine("For a test on an automatic gearbox, press 0. For a test on a manual gearbox, press 1.");
+            //    a = Console.ReadLine()[0];
+            //    switch (a)
+            //    {
+            //        case '0':
+            //            {
+            //                vehicle.GearBoxType = GearBox.Automatic;
+            //                break;
+            //            }
+            //        case '1':
+            //            {
+            //                vehicle.GearBoxType = GearBox.Manual;
+            //                break;
+            //            }
+            //        default:
+            //            {
+            //                Console.WriteLine("The input is not valid. Please try again.");
+            //                break;
+            //            }
+            //    }
+            //} while ((int)a != 48 && (int)a != 49);
+            //do
+            //{
+            //    Console.WriteLine("For a test on a two wheel vehicle press 0. For a test on a private vehicle press 1. For a test on a medium truck press 2. For a test on a heavy truck press 3.");
+            //    a = Console.ReadLine()[0];
+            //    switch (a)
+            //    {
+            //        case '0':
+            //            {
+            //                vehicle.VehicleType = Vehicle.TwoWheelVehicle;
+            //                break;
+            //            }
+            //        case '1':
+            //            {
+            //                vehicle.VehicleType = Vehicle.PrivateVehicle;
+            //                break;
+            //            }
+            //        case '2':
+            //            {
+            //                vehicle.VehicleType = Vehicle.MediumTruck;
+            //                break;
+            //            }
+            //        case '3':
+            //            {
+            //                vehicle.VehicleType = Vehicle.HeavyTruck;
+            //                break;
+            //            }
+            //        default:
+            //            {
+            //                Console.WriteLine("The input is not valid. Please try again.");
+            //                break;
+            //            }
+            //    }
+            //} while ((int)a < 48 || (int)a > 51);
+            if(FactoryBL.Instance.GetAvailableDatesForTest((from t in ReturnTrainees() where t.IDNumber == traineeId select t).FirstOrDefault()) == null)
+            {
+                var c = (from t in ReturnTesters()
+                         where t.MaxDistanceFromTest >= CalcDistance(trainee.MyAddress, t.MyAddress)
+                         select t);
+                var k = FactoryBL.Instance.TestersBySpecialty(trainee.TraineeVehicle).Intersect(c);
+                foreach (var item in k)
+                {
+                    AddAnotherWeek(item);
+                }
+            }
+            int i = 0;
             do
             {
-                Console.WriteLine("For a test on an automatic gearbox, press 0. For a test on a manual gearbox, press 1.");
-                a = Console.ReadLine()[0];
-                switch (a)
+                i = 0;
+                foreach (DateTime date in FactoryBL.Instance.GetAvailableDatesForTest((from t in ReturnTrainees() where t.IDNumber == traineeId select t).FirstOrDefault()))
                 {
-                    case '0':
-                        {
-                            vehicle.GearBoxType = GearBox.Automatic;
-                            break;
-                        }
-                    case '1':
-                        {
-                            vehicle.GearBoxType = GearBox.Manual;
-                            break;
-                        }
-                    default:
-                        {
-                            Console.WriteLine("The input is not valid. Please try again.");
-                            break;
-                        }
+                    
+                    Console.WriteLine("To choose date: " + date.ToString() + "press " + i.ToString());
+                    i++;
                 }
-            } while ((int)a != 48 && (int)a != 49);
-            do
+                a = Console.ReadLine()[0];
+                if ((int)a < '0' || (int)a >= i)
+                {
+                    Console.WriteLine("Invalid Input. Please try again.");
+                }
+            }
+            while ((int)a < '0' || (int)a >= i);
+            i = 0;
+            foreach (var item in FactoryBL.Instance.GetAvailableDatesForTest((from t in ReturnTrainees() where t.IDNumber == traineeId select t).FirstOrDefault()))
             {
-                Console.WriteLine("For a test on a two wheel vehicle press 0. For a test on a private vehicle press 1. For a test on a medium truck press 2. For a test on a heavy truck press 3.");
-                a = Console.ReadLine()[0];
-                switch (a)
+                if (int.Parse(a.ToString()) == i)
                 {
-                    case '0':
-                        {
-                            vehicle.VehicleType = Vehicle.TwoWheelVehicle;
-                            break;
-                        }
-                    case '1':
-                        {
-                            vehicle.VehicleType = Vehicle.PrivateVehicle;
-                            break;
-                        }
-                    case '2':
-                        {
-                            vehicle.VehicleType = Vehicle.MediumTruck;
-                            break;
-                        }
-                    case '3':
-                        {
-                            vehicle.VehicleType = Vehicle.HeavyTruck;
-                            break;
-                        }
-                    default:
-                        {
-                            Console.WriteLine("The input is not valid. Please try again.");
-                            break;
-                        }
+                    myDate = item;
+                    break;
                 }
-            } while ((int)a < 48 || (int)a > 51);
-
+                i++;
+            }
+            FactoryBL.Instance.GetTest(trainee, myDate);
         }
 
         public void AddTester()
@@ -118,17 +149,136 @@ namespace UI
 
         public int CalcDistance(Address address1, Address address2)
         {
-            throw new NotImplementedException();
+            return FactoryBL.Instance.CalcDistance(address1, address2);
         }
 
-        public void CancelTest(Test _test)
+        public void CancelTest()
         {
-            throw new NotImplementedException();
-        }
+            char a;
+            int i = 0;
+            do
+            {
+                i = 0;
+                foreach (Test item in ReturnTests())
+                {
 
+                    Console.WriteLine("To choose test to cancel: " + item.ToString() + " press " + i.ToString());
+                    i++;
+                }
+                a = Console.ReadLine()[0];
+                if ((int)a < '0' || (int)a >= i)
+                {
+                    Console.WriteLine("Invalid Input. Please try again.");
+                }
+            }
+            while ((int)a < '0' || (int)a >= i);
+            i = 0;
+            foreach (var item in ReturnTests())
+            {
+                if (int.Parse(a.ToString()) == i)
+                {
+                    FactoryBL.Instance.CancelTest(item);
+                    return;
+                }
+                i++;
+            }
+        }
         public bool CanDrive(Trainee _trainee, VehicleParams vehicle)
         {
             throw new NotImplementedException();
+        }
+        
+        public Test ChooseTest()
+        {
+            char c;
+            int i;
+            do
+            {
+                i = 0;
+                foreach (var item in ReturnTests())
+                {
+                    Console.WriteLine("To choose test: " + item.ToString() + "press " + i.ToString());
+                    i++;
+                }
+                c = Console.ReadLine()[0];
+                if ((int)c < '0' || (int)c >= i)
+                {
+                    Console.WriteLine("Invalid Input. Please try again.");
+                }
+            }
+            while ((int)c < '0' || (int)c >= i);
+            i = 0;
+            foreach (var item in ReturnTests())
+            {
+                if(int.Parse(c.ToString()) == i)
+                {
+                    return item;
+                }
+                i++;
+            }
+            return null;
+        }
+
+        public Tester ChooseTester()
+        {
+            char c;
+            int i;
+            do
+            {
+                i = 0;
+                foreach (var item in ReturnTesters())
+                {
+                    Console.WriteLine("To choose tester: " + item.ToString() + "press " + i.ToString());
+                    i++;
+                }
+                c = Console.ReadLine()[0];
+                if ((int)c < '0' || (int)c >= i)
+                {
+                    Console.WriteLine("Invalid Input. Please try again.");
+                }
+            }
+            while ((int)c < '0' || (int)c >= i);
+            i = 0;
+            foreach (var item in ReturnTesters())
+            {
+                if (int.Parse(c.ToString()) == i)
+                {
+                    return item;
+                }
+                i++;
+            }
+            return null;
+        }
+
+        public Trainee ChooseTrainee()
+        {
+            char c;
+            int i;
+            do
+            {
+                i = 0;
+                foreach (var item in ReturnTrainees())
+                {
+                    Console.WriteLine("To choose trainee: " + item.ToString() + "press " + i.ToString());
+                    i++;
+                }
+                c = Console.ReadLine()[0];
+                if ((int)c < '0' || (int)c >= i)
+                {
+                    Console.WriteLine("Invalid Input. Please try again.");
+                }
+            }
+            while ((int)c < '0' || (int)c >= i);
+            i = 0;
+            foreach (var item in ReturnTrainees())
+            {
+                if (int.Parse(c.ToString()) == i)
+                {
+                    return item;
+                }
+                i++;
+            }
+            return null;
         }
 
         public FullName CorrectWriting(FullName name)
@@ -146,15 +296,16 @@ namespace UI
             throw new NotImplementedException();
         }
 
-        public void EraseTrainee(Trainee _trainee)
+        public void EraseTester()
         {
             throw new NotImplementedException();
         }
 
-        public void GetTest(Trainee trainee, DateTime dateTime)
+        public void EraseTrainee()
         {
             throw new NotImplementedException();
         }
+
 
         public void GiveOptions()
         {
@@ -179,7 +330,7 @@ namespace UI
         {
             foreach (char letter in str)
             {
-                if(!IsLetter(letter))
+                if (!IsLetter(letter))
                 {
                     return false;
                 }
@@ -234,9 +385,9 @@ namespace UI
         {
             try
             {
-               FactoryBL.Instance.ReturnTrainees();
+                FactoryBL.Instance.ReturnTrainees();
             }
-            catch ( Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex);
             }
@@ -245,7 +396,7 @@ namespace UI
 
         public void TestersBusyByTime(DateTime _dateTime)
         {
-            if(FactoryBL.Instance.TestersBusyByTime(_dateTime) == null)
+            if (FactoryBL.Instance.TestersBusyByTime(_dateTime) == null)
             {
                 Console.WriteLine("There are no testers busy at this time.");
             }
@@ -328,17 +479,17 @@ namespace UI
             throw new NotImplementedException();
         }
 
-        public void UpdateTest(Test updatedTest)
+        public void UpdateTest()
         {
             throw new NotImplementedException();
         }
 
-        public void UpdateTester(Tester updatedTester)
+        public void UpdateTester()
         {
             throw new NotImplementedException();
         }
 
-        public void UpdateTrainee(Trainee updatedTrainee)
+        public void UpdateTrainee()
         {
             throw new NotImplementedException();
         }

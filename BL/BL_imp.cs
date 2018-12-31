@@ -648,5 +648,42 @@ namespace BL
                      select t);
             return k as List<Tester>;
         }
+
+        public List<DateTime> GetAvailableDatesForTest(Trainee trainee)
+        {
+            if (trainee == null)
+                return null;
+            var a = (from t in ReturnTesters()
+                     where t.MaxDistanceFromTest >= CalcDistance(trainee.MyAddress, t.MyAddress)
+                     select t);
+            var k = TestersBySpecialty(trainee.TraineeVehicle).Intersect(a);
+            List<DateTime> dates = new List<DateTime>();
+            foreach (var Tester in k)
+            {
+                dates.Union(GetAvailableDates(Tester));
+            }
+            return dates;
+        }
+
+        public List<DateTime> GetAvailableDates(Tester tester)
+        {
+            List<DateTime> returnList = new List<DateTime>();
+            DateTime date;
+            for (int i = 0; i < tester.MyWorkHours.Length; i++)
+            {
+                for (int j = 0; j < 5; j++)
+                {
+                    for (int h = 0; h < 6; h++)
+                    {
+                        date = new DateTime(DateTime.Now.AddDays((double)(7 * i  + j)).Year, DateTime.Now.AddDays((double)(7 * i + j)).Month, DateTime.Now.AddDays((double) (7 * i +j)).DayOfYear, h+9 , 0 , 0);
+                        if(tester.MyWorkHours[i][date] == false)
+                        {
+                            returnList.Add(date);
+                        }
+                    }
+                }
+            }
+            return returnList;        
+        }
     }
 }

@@ -10,20 +10,19 @@ namespace UI
     interface IUI
     {
         void AddTester();
-        void EraseTester(Tester _tester);
-        void UpdateTester(Tester updatedTester);
+        void EraseTester();
+        void UpdateTester();
         void AddAnotherWeek(Tester tester);
         void RemoveFirstWeek(Tester tester);
 
         void AddTrainee();
-        void EraseTrainee(Trainee _trainee);
-        void UpdateTrainee(Trainee updatedTrainee);
-        void GetTest(Trainee trainee, DateTime dateTime);
+        void EraseTrainee();
+        void UpdateTrainee();
 
 
         void AddTest();
-        void CancelTest(Test _test);
-        void UpdateTest(Test updatedTest);
+        void CancelTest();
+        void UpdateTest();
 
         List<Tester> ReturnTesters();
         List<Trainee> ReturnTrainees();
@@ -55,5 +54,9 @@ namespace UI
         bool IsStringNumbers(string str);
         FullName CorrectWriting(FullName name);
         void GiveOptions();
+        Tester ChooseTester();
+        Test ChooseTest();
+        Trainee ChooseTrainee();
+        
     }
 }
