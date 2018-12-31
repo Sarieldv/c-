@@ -9,3 +9,14 @@ C:\Users\sariel\Desktop\sariel\מיני פרויקט\c--master\DAL\bin\Debug\DS.
 C:\Users\sariel\Desktop\sariel\מיני פרויקט\c--master\DAL\obj\Debug\DAL.csproj.CopyComplete
 C:\Users\sariel\Desktop\sariel\מיני פרויקט\c--master\DAL\obj\Debug\DAL.dll
 C:\Users\sariel\Desktop\sariel\מיני פרויקט\c--master\DAL\obj\Debug\DAL.pdb
+U:\מיני פרויקט\DrivingTest\DAL\bin\Debug\DAL.dll
+U:\מיני פרויקט\DrivingTest\DAL\bin\Debug\DAL.pdb
+U:\מיני פרויקט\DrivingTest\DAL\bin\Debug\BE.dll
+U:\מיני פרויקט\DrivingTest\DAL\bin\Debug\DS.dll
+U:\מיני פרויקט\DrivingTest\DAL\bin\Debug\BE.pdb
+U:\מיני פרויקט\DrivingTest\DAL\bin\Debug\DS.pdb
+U:\מיני פרויקט\DrivingTest\DAL\obj\Debug\DAL.csprojAssemblyReference.cache
+U:\מיני פרויקט\DrivingTest\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+U:\מיני פרויקט\DrivingTest\DAL\obj\Debug\DAL.csproj.CopyComplete
+U:\מיני פרויקט\DrivingTest\DAL\obj\Debug\DAL.dll
+U:\מיני פרויקט\DrivingTest\DAL\obj\Debug\DAL.pdb

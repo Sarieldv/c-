@@ -7,3 +7,12 @@ C:\Users\sariel\Desktop\sariel\מיני פרויקט\c--master\DS\obj\Debug\DS.c
 C:\Users\sariel\Desktop\sariel\מיני פרויקט\c--master\DS\obj\Debug\DS.csproj.CopyComplete
 C:\Users\sariel\Desktop\sariel\מיני פרויקט\c--master\DS\obj\Debug\DS.dll
 C:\Users\sariel\Desktop\sariel\מיני פרויקט\c--master\DS\obj\Debug\DS.pdb
+U:\מיני פרויקט\DrivingTest\DS\bin\Debug\DS.dll
+U:\מיני פרויקט\DrivingTest\DS\bin\Debug\DS.pdb
+U:\מיני פרויקט\DrivingTest\DS\bin\Debug\BE.dll
+U:\מיני פרויקט\DrivingTest\DS\bin\Debug\BE.pdb
+U:\מיני פרויקט\DrivingTest\DS\obj\Debug\DS.csprojAssemblyReference.cache
+U:\מיני פרויקט\DrivingTest\DS\obj\Debug\DS.csproj.CoreCompileInputs.cache
+U:\מיני פרויקט\DrivingTest\DS\obj\Debug\DS.csproj.CopyComplete
+U:\מיני פרויקט\DrivingTest\DS\obj\Debug\DS.dll
+U:\מיני פרויקט\DrivingTest\DS\obj\Debug\DS.pdb

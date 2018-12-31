@@ -25,6 +25,5 @@ namespace BE
                 value = MyWeekHours[(int)dateTime.DayOfWeek, (dateTime.Hour - 9)];
             }
         }
-        public bool 
     }
 }

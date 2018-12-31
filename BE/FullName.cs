@@ -10,7 +10,7 @@ namespace BE
     {
         public readonly string FirstName;
         public readonly string LastName;
-        FullName(string _firstName, string _lastName)
+        public FullName(string _firstName, string _lastName)
         {
             FirstName = _firstName;
             LastName = _lastName;

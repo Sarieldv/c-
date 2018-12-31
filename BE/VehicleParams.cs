@@ -18,5 +18,14 @@ namespace BE
             }
             return (int)VehicleType + 4;
         }
+        public VehicleParams(Vehicle vehicle, GearBox gearBox)
+        {
+            VehicleType = vehicle;
+            GearBoxType = gearBox;
+        }
+        public VehicleParams()
+        {
+
+        }
     }
 }

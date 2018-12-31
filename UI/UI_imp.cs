@@ -34,11 +34,11 @@ namespace UI
                 {
                     Console.WriteLine("The trainee ID number entered contains characters that are not numbers. Please reenter the ID:");
                 }
-                if((from t in ReturnTrainees() where t.IDNumber == traineeId select t).FirstOrDefault() == null && IsStringLetters(traineeId) && traineeId.Length == 9)
+                if ((from t in ReturnTrainees() where t.IDNumber == traineeId select t).FirstOrDefault() == null && IsStringLetters(traineeId) && traineeId.Length == 9)
                 {
                     Console.WriteLine("A trainee with this ID does not exist");
                 }
-            } while (traineeId.Length != 9 || !IsStringNumbers(traineeId) || (from t in ReturnTrainees() where t.IDNumber == traineeId select t).FirstOrDefault() == null );
+            } while (traineeId.Length != 9 || !IsStringNumbers(traineeId) || (from t in ReturnTrainees() where t.IDNumber == traineeId select t).FirstOrDefault() == null);
             trainee = (from t in ReturnTrainees() where t.IDNumber == traineeId select t).FirstOrDefault();
             //do
             //{
@@ -96,7 +96,7 @@ namespace UI
             //            }
             //    }
             //} while ((int)a < 48 || (int)a > 51);
-            if(FactoryBL.Instance.GetAvailableDatesForTest((from t in ReturnTrainees() where t.IDNumber == traineeId select t).FirstOrDefault()) == null)
+            if (FactoryBL.Instance.GetAvailableDatesForTest((from t in ReturnTrainees() where t.IDNumber == traineeId select t).FirstOrDefault()) == null)
             {
                 var c = (from t in ReturnTesters()
                          where t.MaxDistanceFromTest >= CalcDistance(trainee.MyAddress, t.MyAddress)
@@ -113,7 +113,7 @@ namespace UI
                 i = 0;
                 foreach (DateTime date in FactoryBL.Instance.GetAvailableDatesForTest((from t in ReturnTrainees() where t.IDNumber == traineeId select t).FirstOrDefault()))
                 {
-                    
+
                     Console.WriteLine("To choose date: " + date.ToString() + "press " + i.ToString());
                     i++;
                 }
@@ -154,40 +154,20 @@ namespace UI
 
         public void CancelTest()
         {
-            char a;
-            int i = 0;
-            do
+            try
             {
-                i = 0;
-                foreach (Test item in ReturnTests())
-                {
-
-                    Console.WriteLine("To choose test to cancel: " + item.ToString() + " press " + i.ToString());
-                    i++;
-                }
-                a = Console.ReadLine()[0];
-                if ((int)a < '0' || (int)a >= i)
-                {
-                    Console.WriteLine("Invalid Input. Please try again.");
-                }
+                FactoryBL.Instance.CancelTest(ChooseTest());
             }
-            while ((int)a < '0' || (int)a >= i);
-            i = 0;
-            foreach (var item in ReturnTests())
+            catch (Exception ex)
             {
-                if (int.Parse(a.ToString()) == i)
-                {
-                    FactoryBL.Instance.CancelTest(item);
-                    return;
-                }
-                i++;
+                Console.WriteLine(ex);
             }
         }
         public bool CanDrive(Trainee _trainee, VehicleParams vehicle)
         {
             throw new NotImplementedException();
         }
-        
+
         public Test ChooseTest()
         {
             char c;
@@ -210,7 +190,7 @@ namespace UI
             i = 0;
             foreach (var item in ReturnTests())
             {
-                if(int.Parse(c.ToString()) == i)
+                if (int.Parse(c.ToString()) == i)
                 {
                     return item;
                 }
@@ -291,19 +271,28 @@ namespace UI
             return correction;
         }
 
-        public void EraseTester(Tester _tester)
-        {
-            throw new NotImplementedException();
-        }
-
         public void EraseTester()
         {
-            throw new NotImplementedException();
+            try
+            {
+                FactoryBL.Instance.EraseTester(ChooseTester());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
 
         public void EraseTrainee()
         {
-            throw new NotImplementedException();
+            try
+            {
+                FactoryBL.Instance.EraseTrainee(ChooseTrainee());
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+            }
         }
 
 
@@ -481,9 +470,254 @@ namespace UI
 
         public void UpdateTest()
         {
-            throw new NotImplementedException();
-        }
-
+            Test test = ChooseTest();
+            char a;
+            bool distanceKeep, reverseParking, parking, lookingAtMirrors, junction, reversing, roundAbout, overTaking, grade, turning;
+            string testerNote;
+            do
+            {
+                Console.WriteLine("For distanceKeep: If you would like to enter failed, press 0. If you would like to enter passed press 1.");
+                a = Console.ReadLine()[0];
+                switch (a)
+                {
+                    case '0':
+                        {
+                            distanceKeep = false;
+                            break;
+                        }
+                    case '1':
+                        {
+                            distanceKeep = true;
+                            break;
+                        }
+                    default:
+                        break;
+                }
+                if (a != '0' && a != '1')
+                {
+                    Console.WriteLine("Invalid input. Please enter again.");
+                }
+            } while (a != '0' && a != '1');
+            do
+            {
+                Console.WriteLine("For reverseParking: If you would like to enter failed, press 0. If you would like to enter passed press 1.");
+                a = Console.ReadLine()[0];
+                switch (a)
+                {
+                    case '0':
+                        {
+                            reverseParking = false;
+                            break;
+                        }
+                    case '1':
+                        {
+                            reverseParking = true;
+                            break;
+                        }
+                    default:
+                        break;
+                }
+                if (a != '0' && a != '1')
+                {
+                    Console.WriteLine("Invalid input. Please enter again.");
+                }
+            } while (a != '0' && a != '1');
+            do
+            {
+                Console.WriteLine("For parking: If you would like to enter failed, press 0. If you would like to enter passed press 1.");
+                a = Console.ReadLine()[0];
+                switch (a)
+                {
+                    case '0':
+                        {
+                            parking = false;
+                            break;
+                        }
+                    case '1':
+                        {
+                            parking = true;
+                            break;
+                        }
+                    default:
+                        break;
+                }
+                if (a != '0' && a != '1')
+                {
+                    Console.WriteLine("Invalid input. Please enter again.");
+                }
+            } while (a != '0' && a != '1');
+            do
+            {
+                Console.WriteLine("For lookingAtMirrors: If you would like to enter failed, press 0. If you would like to enter passed press 1.");
+                a = Console.ReadLine()[0];
+                switch (a)
+                {
+                    case '0':
+                        {
+                            lookingAtMirrors = false;
+                            break;
+                        }
+                    case '1':
+                        {
+                            lookingAtMirrors = true;
+                            break;
+                        }
+                    default:
+                        break;
+                }
+                if (a != '0' && a != '1')
+                {
+                    Console.WriteLine("Invalid input. Please enter again.");
+                }
+            } while (a != '0' && a != '1');
+            do
+            {
+                Console.WriteLine("For junction: If you would like to enter failed, press 0. If you would like to enter passed press 1.");
+                a = Console.ReadLine()[0];
+                switch (a)
+                {
+                    case '0':
+                        {
+                            junction = false;
+                            break;
+                        }
+                    case '1':
+                        {
+                            junction = true;
+                            break;
+                        }
+                    default:
+                        break;
+                }
+                if (a != '0' && a != '1')
+                {
+                    Console.WriteLine("Invalid input. Please enter again.");
+                }
+            } while (a != '0' && a != '1');
+            do
+            {
+                Console.WriteLine("For reversing: If you would like to enter failed, press 0. If you would like to enter passed press 1.");
+                a = Console.ReadLine()[0];
+                switch (a)
+                {
+                    case '0':
+                        {
+                            reversing = false;
+                            break;
+                        }
+                    case '1':
+                        {
+                            reversing = true;
+                            break;
+                        }
+                    default:
+                        break;
+                }
+                if (a != '0' && a != '1')
+                {
+                    Console.WriteLine("Invalid input. Please enter again.");
+                }
+            } while (a != '0' && a != '1');
+            do
+            {
+                Console.WriteLine("For roundAbout: If you would like to enter failed, press 0. If you would like to enter passed press 1.");
+                a = Console.ReadLine()[0];
+                switch (a)
+                {
+                    case '0':
+                        {
+                            roundAbout = false;
+                            break;
+                        }
+                    case '1':
+                        {
+                            roundAbout = true;
+                            break;
+                        }
+                    default:
+                        break;
+                }
+                if (a != '0' && a != '1')
+                {
+                    Console.WriteLine("Invalid input. Please enter again.");
+                }
+            } while (a != '0' && a != '1');
+            do
+            {
+                Console.WriteLine("For turning: If you would like to enter failed, press 0. If you would like to enter passed press 1.");
+                a = Console.ReadLine()[0];
+                switch (a)
+                {
+                    case '0':
+                        {
+                            turning = false;
+                            break;
+                        }
+                    case '1':
+                        {
+                            turning = true;
+                            break;
+                        }
+                    default:
+                        break;
+                }
+                if (a != '0' && a != '1')
+                {
+                    Console.WriteLine("Invalid input. Please enter again.");
+                }
+            } while (a != '0' && a != '1');
+            do
+            {
+                Console.WriteLine("For overTaking: If you would like to enter failed, press 0. If you would like to enter passed press 1.");
+                a = Console.ReadLine()[0];
+                switch (a)
+                {
+                    case '0':
+                        {
+                            overTaking = false;
+                            break;
+                        }
+                    case '1':
+                        {
+                            overTaking = true;
+                            break;
+                        }
+                    default:
+                        break;
+                }
+                if (a != '0' && a != '1')
+                {
+                    Console.WriteLine("Invalid input. Please enter again.");
+                }
+            } while (a != '0' && a != '1');
+            do
+            {
+                Console.WriteLine("For grade: If you would like to enter failed, press 0. If you would like to enter passed press 1.");
+                a = Console.ReadLine()[0];
+                switch (a)
+                {
+                    case '0':
+                        {
+                            grade = false;
+                            break;
+                        }
+                    case '1':
+                        {
+                            grade = true;
+                            break;
+                        }
+                    default:
+                        break;
+                }
+                if (a != '0' && a != '1')
+                {
+                    Console.WriteLine("Invalid input. Please enter again.");
+                }
+            } while (a != '0' && a != '1');
+            Console.WriteLine("Please enter tester's note.");
+            testerNote = Console.ReadLine();
+            FactoryBL.Instance.UpdateTest(new Test(test, ))
+        }  
         public void UpdateTester()
         {
             throw new NotImplementedException();

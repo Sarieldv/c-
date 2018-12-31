@@ -3,3 +3,8 @@ C:\Users\sariel\Desktop\sariel\מיני פרויקט\c--master\BE\bin\Debug\BE.p
 C:\Users\sariel\Desktop\sariel\מיני פרויקט\c--master\BE\obj\Debug\BE.csproj.CoreCompileInputs.cache
 C:\Users\sariel\Desktop\sariel\מיני פרויקט\c--master\BE\obj\Debug\BE.dll
 C:\Users\sariel\Desktop\sariel\מיני פרויקט\c--master\BE\obj\Debug\BE.pdb
+U:\מיני פרויקט\DrivingTest\BE\obj\Debug\BE.csproj.CoreCompileInputs.cache
+U:\מיני פרויקט\DrivingTest\BE\obj\Debug\BE.dll
+U:\מיני פרויקט\DrivingTest\BE\obj\Debug\BE.pdb
+U:\מיני פרויקט\DrivingTest\BE\bin\Debug\BE.dll
+U:\מיני פרויקט\DrivingTest\BE\bin\Debug\BE.pdb

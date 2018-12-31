@@ -17,7 +17,7 @@ namespace BE
 
         public int Age()
         {
-            return DateTime.Now.Year - BirthDate.Year;
+            return (int)(DateTime.Now - BirthDate).TotalDays / 365;
         }
         public override string ToString()
         {

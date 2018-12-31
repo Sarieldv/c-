@@ -10,12 +10,12 @@ namespace BE
     {
         public readonly string number;
         public readonly KindOfPhoneNumber kind;
-        PhoneNumber(string _number, KindOfPhoneNumber _kind)
-        {
+       public PhoneNumber(string _number, KindOfPhoneNumber _kind)
+       {
             number = _number;
             kind = _kind;
-        }
-        PhoneNumber(PhoneNumber phone)
+       }
+        public PhoneNumber(PhoneNumber phone)
         {
             this.kind = phone.kind;
             this.number = phone.number;

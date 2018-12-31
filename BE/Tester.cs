@@ -48,6 +48,20 @@ namespace BE
             MyWorkHours = _myWorkHours;
             MaxDistanceFromTest = _maximumDistance;
         }
+        public Tester(string _ID, FullName _name, DateTime _birthDate, Gender _gender, PhoneNumber _phoneNumber, Address _address, int _yearsOfExperience, int _maximumWeeklyTests, List<VehicleParams> _myVehicles, int _maximumDistance)
+        {
+            IDNumber = _ID;
+            Name = _name;
+            BirthDate = _birthDate;
+            MyGender = _gender;
+            MyPhoneNumber = _phoneNumber;
+            MyAddress = _address;
+            YearsOfExperience = _yearsOfExperience;
+            MaximumWeeklyTests = _maximumWeeklyTests;
+            MyVehicles = _myVehicles;
+            MyWorkHours = new WeeklyWorkHours[1];
+            MaxDistanceFromTest = _maximumDistance;
+        }
         public bool hasVehicle(VehicleParams vehicle)
         {
             if (MyVehicles.Any(t => t == vehicle))

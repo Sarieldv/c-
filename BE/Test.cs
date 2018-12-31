@@ -33,7 +33,7 @@ namespace BE
             DateAndTime = _dateAndTime;
 
         }
-        public Test(Test t, bool? _distanceKeep, bool? _reverseParking, bool? _parking, bool? _lookingAtMirrors, bool? _junction, bool? _reversing, bool? _roundabout, bool? _overtaking, bool? _turning, string _testerNote, bool? _grade)
+        public Test(Test t, bool _distanceKeep, bool _reverseParking, bool _parking, bool _lookingAtMirrors, bool _junction, bool _reversing, bool _roundabout, bool _overtaking, bool _turning, string _testerNote, bool _grade)
         {
             Number = t.Number;
             TesterId = t.TesterId;

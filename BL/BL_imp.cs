@@ -547,7 +547,7 @@ namespace BL
             {
                 throw new Exception("Tester is too young.");
             }
-            if (updatedTester.MyWorkHours != tester.MyWorkHours && k.Any(t => !updatedTester.hasTestByDate(t.DateAndTime))
+            if (updatedTester.MyWorkHours != tester.MyWorkHours && k.Any(t => !updatedTester.hasTestByDate(t.DateAndTime)))
             {
                 throw new Exception("Tester is signed up to Tests that need to be canceled in order to change his schedule.");
             }

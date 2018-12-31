@@ -58,7 +58,7 @@ namespace DAL
         }
         public static Test DeepClone(this Test t)
         {
-            return new Test(t, t.DistanceKeep, t.ReverseParking, t.Parking, t.LookingAtMirrors, t.Junction, t.Reversing, t.Roundabout, t.Overtaking, t.Turning, t.TesterNote, t.Grade);            
+            return new Test(t, (bool)t.DistanceKeep, (bool)t.ReverseParking,(bool) t.Parking, (bool)t.LookingAtMirrors, (bool)t.Junction, (bool)t.Reversing, (bool)t.Roundabout, (bool)t.Overtaking, (bool)t.Turning, t.TesterNote, (bool)t.Grade);            
         }
     }
 
