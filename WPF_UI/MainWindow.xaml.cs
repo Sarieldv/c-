@@ -24,41 +24,6 @@ namespace WPF_UI
         {
             InitializeComponent();
         }
-        public bool IsLetter(char a)
-        {
-            if (((int)a>64&&(int)a<91)|| ((int)a > 96 && (int)a < 123) || (int)a==32)
-            {
-                return true;
-            }
-            return false;
-        }
-        public bool IsWords(string str)
-        {
-            for (int i = 0; i < str.Length; i++)
-            {
-                if (!IsLetter(str[i]))
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-        public bool IsNumber(char c)
-        {
-            if((int)c>47&&(int)c<58)
-            {
-                return true;
-            }
-            return false;
-        }
-        public bool IsStringNumbers(string str)
-        {
-            for (int i = 0; i < str.Length; i++)
-            {
-                if (!IsNumber(str[i]))
-                    return false;
-            }
-            return true;
-        }
+        
     }
 }

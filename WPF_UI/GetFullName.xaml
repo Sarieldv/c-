@@ -30,7 +30,7 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <TextBox x:Name="InputFirstNameTextBox" Text="Please enter your first name here..." Grid.Row="1" BorderBrush="Black" Foreground="Gray" Margin="-2,0,2,0"/>
+                    <TextBox x:Name="InputFirstNameTextBox" Text="" Grid.Row="1" BorderBrush="Black" BorderThickness="2"/>
                     <Label Content="First Name:" Grid.Row="0" BorderBrush="Black"/>
                     <Label x:Name="ExceptionWindowFirstName" Grid.Row="0" Foreground="OrangeRed" HorizontalAlignment="Right" Content=""/>
                 </Grid>
@@ -39,9 +39,9 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <TextBox x:Name="InputLastNameTextBox" Text="Please enter your last name here..." Grid.Row="1" BorderBrush="Black" Foreground="Gray"/>
-                    <Label Content="Last Name:" Grid.Row="0" BorderBrush="Black"/>
-                    <Label x:Name="ExceptionWindowLastName" Grid.Row="0" Foreground="OrangeRed" HorizontalAlignment="Right" Content=""/>
+                    <TextBox x:Name="InputLastNameTextBox"  Grid.Row="1" BorderBrush="Black" TextChanged="InputLastNameTextBox_TextChanged" />
+                    <Label Content="Last Name:" Grid.Row="0" BorderBrush="Black" BorderThickness="2"/>
+                    <Label x:Name="ExceptionWindowLastName" Grid.Row="0" Foreground="OrangeRed" HorizontalAlignment="Right" Content="" />
                 </Grid>
                 <Grid Grid.Row="1">
 

@@ -24,5 +24,14 @@ namespace WPF_UI
         {
             InitializeComponent();
         }
+
+        private void InputLastNameTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            TextBox textBox = (sender as TextBox);
+            if (!Utilities.IsWords(textBox.Text))
+            {
+
+            }
+        }
     }
 }
