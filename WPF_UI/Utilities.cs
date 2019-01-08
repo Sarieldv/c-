@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace WPF_UI
 {
@@ -52,6 +53,14 @@ namespace WPF_UI
                 s += str[i].ToString().ToLower();
             }
             return s;
+        }
+        public static void ErrorBox(string str)
+        {
+            MessageBox.Show(str, "Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+        }
+        public static void InformationBox(string str)
+        {
+            MessageBox.Show(str, "", MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
 }

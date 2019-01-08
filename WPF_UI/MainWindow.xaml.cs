@@ -24,6 +24,5 @@ namespace WPF_UI
         {
             InitializeComponent();
         }
-        
     }
 }
